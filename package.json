@@ -1,0 +1,17 @@
+{
+  "name": "react-blockchain",
+  "version": "1.0.0",
+  "description": "Node, Blockchain",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Stefan Trajkovic",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
