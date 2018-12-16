@@ -1,4 +1,4 @@
-const Block = require('./node-model');
+const Block = require('./block-model');
 
 describe('Block', () => {
     const timestamp = 'a-date';
@@ -14,3 +14,12 @@ describe('Block', () => {
         expect(block.data).toEqual(data);
     });
 });
+
+describe('genesis()', () => {
+    const genesisBlock = Block.genesis();
+
+    it('returns a Block instance', () => {
+        expect(genesisBlock instanceof Block).toEqual(true);
+    });
+});
+
