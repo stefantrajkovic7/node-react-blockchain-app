@@ -22,43 +22,44 @@ describe('Blockchain', () => {
 
         expect(blockchain.chain[blockchain.chain.length - 1].data).toEqual(newData);
     });
-})
 
-describe('isValidChain()', () => {
-    describe('when the chain does not start with the genesis block', () => {
-        it('returns false', () => {
-            blockchain.chain[0] = { data: 'fake-genesis' };
-
-            expect(Blockchain.isValidChain(blockchain.chain)).toBe(false);
-        });
-    });
-
-    describe('when the chain starts with the genesis block and has multiple blocks', () => {
-
-        beforeEach(() => {
-            blockchain.addBlock({ data: 'Bears' });
-            blockchain.addBlock({ data: 'Beets' });
-            blockchain.addBlock({ data: 'Beers' });
-        });
-
-        describe('and a lastHash reference has changed', () => {
+    describe('isValidChain()', () => {
+        describe('when the chain does not start with the genesis block', () => {
             it('returns false', () => {
-                blockchain.chain[2].lastHash = 'broken-lashHash';
+                blockchain.chain[0] = { data: 'fake-genesis' };
+    
                 expect(Blockchain.isValidChain(blockchain.chain)).toBe(false);
-            });  
+            });
         });
-
-        describe('and the chain contains a block with an invalid field', () => {
-            it('returns false', () => {
-                blockchain.chain[2].data = 'Invalid DATA';
-                expect(Blockchain.isValidChain(blockchain.chain)).toBe(false);
-            });  
-        });
-
-        describe('and the chain does not contain any invalid blocks', () => {
-            it('returns true', () => {
-                expect(Blockchain.isValidChain(blockchain.chain)).toBe(true);
-            });  
+    
+        describe('when the chain starts with the genesis block and has multiple blocks', () => {
+    
+            beforeEach(() => {
+                blockchain.addBlock({ data: 'Bears' });
+                blockchain.addBlock({ data: 'Beets' });
+                blockchain.addBlock({ data: 'Beers' });
+            });
+    
+            describe('and a lastHash reference has changed', () => {
+                it('returns false', () => {
+                    blockchain.chain[2].lastHash = 'broken-lashHash';
+                    expect(Blockchain.isValidChain(blockchain.chain)).toBe(false);
+                });  
+            });
+    
+            describe('and the chain contains a block with an invalid field', () => {
+                it('returns false', () => {
+                    blockchain.chain[2].data = 'Invalid DATA';
+                    expect(Blockchain.isValidChain(blockchain.chain)).toBe(false);
+                });  
+            });
+    
+            describe('and the chain does not contain any invalid blocks', () => {
+                it('returns true', () => {
+                    expect(Blockchain.isValidChain(blockchain.chain)).toBe(true);
+                });  
+            })
         })
     })
 })
+
