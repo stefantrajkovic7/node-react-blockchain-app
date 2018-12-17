@@ -34,24 +34,31 @@ describe('isValidChain()', () => {
     });
 
     describe('when the chain starts with the genesis block and has multiple blocks', () => {
+
+        beforeEach(() => {
+            blockchain.addBlock({ data: 'Bears' });
+            blockchain.addBlock({ data: 'Beets' });
+            blockchain.addBlock({ data: 'Beers' });
+        });
+
         describe('and a lastHash reference has changed', () => {
             it('returns false', () => {
-                blockchain.addBlock({ data: 'Bears' });
-                blockchain.addBlock({ data: 'Beets' });
-                blockchain.addBlock({ data: 'Beers' });
-
                 blockchain.chain[2].lastHash = 'broken-lashHash';
-
                 expect(Blockchain.isValidChain(blockchain.chain)).toBe(false);
             });  
         });
 
         describe('and the chain contains a block with an invalid field', () => {
-            it('returns false', () => {});  
+            it('returns false', () => {
+                blockchain.chain[2].data = 'Invalid DATA';
+                expect(Blockchain.isValidChain(blockchain.chain)).toBe(false);
+            });  
         });
 
         describe('and the chain does not contain any invalid blocks', () => {
-            it('returns true', () => {});  
+            it('returns true', () => {
+                expect(Blockchain.isValidChain(blockchain.chain)).toBe(true);
+            });  
         })
     })
 })
