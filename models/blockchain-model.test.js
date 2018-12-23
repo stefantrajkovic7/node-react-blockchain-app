@@ -6,6 +6,7 @@ describe('Blockchain', () => {
 
     beforeEach(() => {
         blockchain = new Blockchain();
+        newChain = new Blockchain();
     })
 
     it('contains a `chain` Array instance', () => {
@@ -60,6 +61,27 @@ describe('Blockchain', () => {
                 });  
             })
         })
+    })
+
+    describe('replaceChain()', () => {
+        describe('when the new chain is not longer', () => {
+            it('does not replace the chain', () => {
+
+            });
+        });
+
+        describe('when the chain is longer', () => {
+            describe('and chain is invalid', () => {
+                it('does not replace the chain', () => {
+
+                });
+            });
+            describe('and chain is valid', () => {
+                it('replaces the chain', () => {
+
+                });
+            });
+        });
     })
 })
 
