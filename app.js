@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const Blockchain = require('./models/blockchain-model');
+const PubSub = require('./core/pubsub');
 
 const app = express();
 
@@ -22,6 +24,12 @@ const options = {
 };
 
 app.use(cors(options));
+
+// Middlewares and CORE
+const blockchain = new Blockchain();
+const pubsub = new PubSub({ blockchain })
+
+setTimeout(() => pubsub.broadcast(), 1000);
 
 // API Routes
 require('./routes')(app);
