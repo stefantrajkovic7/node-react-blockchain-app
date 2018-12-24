@@ -70,6 +70,12 @@ describe('Block', () => {
             expect(minedBlock.hash.substring(0, minedBlock.difficulty))
                 .toEqual('0'.repeat(minedBlock.difficulty));
         });
+
+        it('adjust the difficulty', () => {
+            const possibleResult = [lastBlock.difficulty + 1, lastBlock.difficulty - 1];
+            
+            expect(possibleResult.includes(minedBlock.difficulty)).toBe(true);
+        });
     });
 
     describe('adjustDifficulty', () => {
