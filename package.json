@@ -2,11 +2,11 @@
   "name": "react-blockchain",
   "version": "1.0.0",
   "description": "Node, Blockchain",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "server": "nodemon index.js",
+    "server": "nodemon app.js",
     "test": "jest --watchAll",
-    "server-peer": "cross-env GENERATE_PEER_PORT='true' nodemon index.js"
+    "server-peer": "cross-env GENERATE_PEER_PORT='true' nodemon app.js"
   },
   "keywords": [
     "node"
@@ -24,6 +24,7 @@
     "hex-to-binary": "^1.0.1",
     "morgan": "^1.9.1",
     "pubnub": "^4.21.6",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "request": "^2.88.0"
   }
 }
