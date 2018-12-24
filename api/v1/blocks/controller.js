@@ -1,6 +1,8 @@
 const Blockchain = require('../../../models/blockchain-model');
+const PubSub = require('../../../core/pubsub');
 
 const blockchain = new Blockchain();
+const pubsub = new PubSub({ blockchain })
 
 /**
  * @api {get} /blocks
@@ -42,6 +44,8 @@ exports.create = (req, res) => {
     const { data } = req.body;
 
     blockchain.addBlock({ data });
+
+    pubsub.broadcast();
 
     res.redirect('/api/v1/blocks');
  };
