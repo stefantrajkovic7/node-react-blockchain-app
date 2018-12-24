@@ -33,13 +33,10 @@ app.use(cors(options));
 const blockchain = new Blockchain();
 const pubsub = new PubSub({ blockchain })
 
-setTimeout(() => pubsub.broadcast(), 1000);
-
 // API Routes
 require('./routes')(app);
 
 // Server
-
 const syncChains = () => {
     request({ url: `${ROOT_NODE_ADDRESS}/api/v1/blocks`}, (error, response, body) => {
         if (!error && response.statusCode === 200) {
@@ -63,6 +60,9 @@ const PORT = PEER_PORT || DEFAULT_PORT;
 app.listen(PORT, () => {
     console.log(`server is listening on ${PORT}`);
 
-    syncChains();
+    if (PORT !== DEFAULT_PORT) {
+        syncChains();
+    }
+
 });
 
