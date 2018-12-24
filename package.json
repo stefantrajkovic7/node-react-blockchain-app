@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "server-peer": "cross-env GENERATE_PEER_PORT='true' nodemon index.js"
   },
   "keywords": [
     "node"
@@ -13,6 +14,7 @@
   "author": "Stefan Trajkovic",
   "license": "ISC",
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "jest": "^23.6.0"
   },
   "dependencies": {
