@@ -1,4 +1,4 @@
-const Blockchain = require('../models/blockchain-model');
+const Blockchain = require('../models/blockchain');
 
 const blockchain = new Blockchain();
 

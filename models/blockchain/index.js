@@ -1,5 +1,5 @@
 const Block = require('./block-model');
-const cryptoHash = require('../core/crypto-hash');
+const cryptoHash = require('../../utils/crypto-hash');
 
 class Blockchain {
     constructor() {

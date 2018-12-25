@@ -1,5 +1,5 @@
-const Blockchain = require('../../../models/blockchain-model');
-const PubSub = require('../../../core/pubsub');
+const Blockchain = require('../../../models/blockchain');
+const PubSub = require('../../../utils/pubsub');
 
 const blockchain = new Blockchain();
 const pubsub = new PubSub({ blockchain })

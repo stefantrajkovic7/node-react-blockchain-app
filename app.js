@@ -3,8 +3,8 @@ const request = require('request');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const Blockchain = require('./models/blockchain-model');
-const PubSub = require('./core/pubsub');
+const Blockchain = require('./models/blockchain');
+const PubSub = require('./utils/pubsub');
 
 const app = express();
 
