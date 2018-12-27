@@ -8,8 +8,11 @@
     "test": "jest --watchAll",
     "server-peer": "cross-env GENERATE_PEER_PORT='true' nodemon app.js"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "keywords": [
-    "node"
+    "node, blockchain, cryptocurrency"
   ],
   "author": "Stefan Trajkovic",
   "license": "ISC",
@@ -20,6 +23,7 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
+    "elliptic": "^6.4.1",
     "express": "^4.16.4",
     "hex-to-binary": "^1.0.1",
     "morgan": "^1.9.1",
