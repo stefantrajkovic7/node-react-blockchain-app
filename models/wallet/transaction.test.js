@@ -111,7 +111,7 @@ describe('Transaction', () => {
 
         describe('and the amount is valid', () => {
             beforeEach(() => {
-                originalSignature = transaction.input.signature
+                originalSignature = transaction.input.signature;
                 originalSenderOutput = transaction.outputMap[senderWallet.publicKey];
                 nextRecipient = 'next-recipient';
                 nextAmount = 50;
@@ -144,8 +144,10 @@ describe('Transaction', () => {
             }); 
 
             describe('and another update for the same recipient', () => {
+                let addedAmount;
+
                 beforeEach(() => {
-                    let addedAmount = 80;
+                    addedAmount = 80;
                     transaction.update({
                         senderWallet, recipient: nextRecipient, amount: addedAmount
                     });
