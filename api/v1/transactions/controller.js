@@ -6,9 +6,9 @@ const wallet = new Wallet();
 const transactionPool = new TransactionPool();
 
 /**
- * @api {get} /blocks
+ * @api {get} /transactions
  *
- * @apiName GET Fetch All Blocks
+ * @apiName GET Fetch All Transactions
  *
  * @access Public
  *
@@ -26,15 +26,15 @@ exports.list = (req, res) => {
  };
 
  /**
- * @api {post} /blocks/mine
+ * @api {post} /transactions/create
  *
- * @apiName POST Block mining
+ * @apiName POST Create transaction
  *
  * @access Public
  *
  * @apiHeader (RequestFileHeader) {String="application/json"} Content-Type
  *
- * @apiSuccess (200) {String} Creates a Block
+ * @apiSuccess (200) {String} Creates a Transaction
  *
  * @apiError (400) {String} message Validation Error
  *
@@ -42,11 +42,13 @@ exports.list = (req, res) => {
  */
 
 exports.create = (req, res) => {
-    const { data } = req.body;
+    const { amount, recipient } = req.body;
 
-    blockchain.addBlock({ data });
+    const transaction = wallet.createTransaction({ recipient, amount });
 
-    pubsub.broadcast();
+    transactionPool.setTransaction(transaction);
 
-    res.redirect('/api/v1/blocks');
+    console.log('transactionPool', transactionPool);
+
+    res.json({ transaction });
  };

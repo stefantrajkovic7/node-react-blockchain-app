@@ -4,6 +4,6 @@ const controller = require('./controller');
 
 router.get('/', controller.list);
 
-router.post('/mine', controller.create);
+router.post('/create', controller.create);
 
 module.exports = router;
