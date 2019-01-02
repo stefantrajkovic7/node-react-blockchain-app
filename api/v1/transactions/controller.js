@@ -8,21 +8,21 @@ const transactionPool = new TransactionPool();
 /**
  * @api {get} /transactions
  *
- * @apiName GET Fetch All Transactions
+ * @apiName GET Fetch TransactionPoolMapList
  *
  * @access Public
  *
  * @apiHeader (RequestFileHeader) {String="application/json"} Content-Type
  *
- * @apiSuccess (200) {String} Fetching a Blocks
+ * @apiSuccess (200) {String} Fetching a PoolMap
  *
  * @apiError (400) {String} message Validation Error
  *
  * @apiError (500) {String} Internal Server error
  */
 
-exports.list = (req, res) => {
-    res.json(blockchain.chain);
+exports.poolMapList = (req, res) => {
+    res.status(200).json(transactionPool.transactionMap);
  };
 
  /**
