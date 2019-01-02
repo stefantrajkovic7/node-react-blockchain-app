@@ -4,6 +4,7 @@ const PubSub = require('../../../utils/pubsub');
 
 const wallet = new Wallet();
 const transactionPool = new TransactionPool();
+const pubsub = new PubSub({ transactionPool })
 
 /**
  * @api {get} /transactions
@@ -59,7 +60,7 @@ exports.create = (req, res) => {
 
     transactionPool.setTransaction(transaction);
 
-    console.log('transactionPool', transactionPool);
+    pubsub.broadcastTransaction(transaction);
 
     res.status(200).json({ type: 'success', transaction });
  };
