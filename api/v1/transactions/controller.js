@@ -4,7 +4,7 @@ const PubSub = require('../../../utils/pubsub');
 
 const wallet = new Wallet();
 const transactionPool = new TransactionPool();
-const pubsub = new PubSub({ transactionPool })
+const pubsub = new PubSub({ transactionPool, wallet })
 
 /**
  * @api {get} /transactions
