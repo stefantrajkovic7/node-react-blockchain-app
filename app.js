@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const Blockchain = require('./models/blockchain');
 const PubSub = require('./utils/pubsub');
+const TransactionPool = require('./models/wallet/transaction-pool');
 
 const app = express();
 
@@ -31,13 +32,15 @@ app.use(cors(options));
 
 // Middlewares and CORE
 const blockchain = new Blockchain();
-const pubsub = new PubSub({ blockchain })
+const transactionPool = new TransactionPool();
+const pubsub = new PubSub({ blockchain, transactionPool })
 
 // API Routes
 require('./routes')(app);
 
 // Server
-const syncChains = () => {
+const syncWithRootState = () => {
+
     request({ url: `${ROOT_NODE_ADDRESS}/api/v1/blocks`}, (error, response, body) => {
         if (!error && response.statusCode === 200) {
             const rootChain = JSON.stringify(body);
@@ -45,6 +48,16 @@ const syncChains = () => {
             console.log('replace chain on a sync with', rootChain)
 
             blockchain.replaceChain(rootChain);
+        }
+    });
+
+    request({ url: `${ROOT_NODE_ADDRESS}/api/v1/transactions/pool-map` }, (error, response, body) => {
+        if (!error && response.statusCode === 200) {
+            const rootTransactionPoolMap = JSON.stringify(body);
+
+            console.log('replace transaction pool map on sync with', rootTransactionPoolMap)
+
+            transactionPool.setMap(rootTransactionPoolMap)
         }
     });
 }
@@ -61,7 +74,7 @@ app.listen(PORT, () => {
     console.log(`server is listening on ${PORT}`);
 
     if (PORT !== DEFAULT_PORT) {
-        syncChains();
+        syncWithRootState();
     }
 
 });
