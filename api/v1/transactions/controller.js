@@ -45,7 +45,7 @@ exports.create = (req, res) => {
     const { amount, recipient } = req.body;
 
     let transaction = transactionPool
-        .existingTransaction({ inputAdress: wallet.publicKey });
+        .existingTransaction({ inputAddress: wallet.publicKey });
 
     try {
         if (transaction) {
