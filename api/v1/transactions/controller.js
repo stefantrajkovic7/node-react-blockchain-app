@@ -44,11 +44,17 @@ exports.list = (req, res) => {
 exports.create = (req, res) => {
     const { amount, recipient } = req.body;
 
-    const transaction = wallet.createTransaction({ recipient, amount });
+    let transaction;
+
+    try {
+        transaction = wallet.createTransaction({ recipient, amount });
+    } catch (error) {
+        return res.status(400).json({ type: 'error', message: error.message })
+    }
 
     transactionPool.setTransaction(transaction);
 
     console.log('transactionPool', transactionPool);
 
-    res.json({ transaction });
+    res.status(200).json({ type: 'success', transaction });
  };
