@@ -186,4 +186,12 @@ describe('Transaction', () => {
         });
     });
 
+    describe('clear()', () => {
+        it('clears the transactions', () => {
+            transactionPool.clear();
+
+            expect(transactionPool.transactionMap).toEqual({});
+        });
+    });
+
 });
