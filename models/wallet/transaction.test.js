@@ -1,7 +1,7 @@
 const Transaction = require('./transaction');
 const Wallet = require('.');
 const { verifySignature } = require('../../utils/elliptic');
-const { REWARD_INPUT } = require('../../data');
+const { REWARD_INPUT, MINING_REWARD } = require('../../data');
 
 describe('Transaction', () => {
    let transaction, senderWallet, recipient, amount;
