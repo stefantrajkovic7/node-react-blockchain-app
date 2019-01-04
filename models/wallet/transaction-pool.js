@@ -23,6 +23,10 @@ class TransactionPool {
         return Object.values(this.transactionMap)
             .filter(transaction => Transaction.validTransaction(transaction))
     }
+
+    clear() {
+        this.transactionMap = {}
+    }
 }
 
 module.exports = TransactionPool;
