@@ -1,10 +1,15 @@
 const Wallet = require('../../../models/wallet');
+const Blockchain = require('../../../models/blockchain');
 const TransactionPool = require('../../../models/wallet/transaction-pool');
 const PubSub = require('../../../utils/pubsub');
+const TransactionMiner = require('../../../utils/transaction-miner');
 
+const blockchain = new Blockchain();
 const wallet = new Wallet();
 const transactionPool = new TransactionPool();
 const pubsub = new PubSub({ transactionPool, wallet })
+const transactionMiner = new TransactionMiner({ blockchain, transactionPool, wallet, pubsub });
+
 
 /**
  * @api {get} mines/list
@@ -23,7 +28,9 @@ const pubsub = new PubSub({ transactionPool, wallet })
  */
 
 exports.list = (req, res) => {
-    
+    transactionMiner.mineTransactions();
+
+    res.redirect('/api/v1/blocks');
 };
 
  /**

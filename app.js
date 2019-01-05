@@ -33,7 +33,7 @@ app.use(cors(options));
 // Middlewares and CORE
 const blockchain = new Blockchain();
 const transactionPool = new TransactionPool();
-const pubsub = new PubSub({ blockchain, transactionPool })
+const pubsub = new PubSub({ blockchain, transactionPool });
 
 // API Routes
 require('./routes')(app);
