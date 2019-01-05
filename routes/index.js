@@ -10,4 +10,9 @@ module.exports = app => {
      */
     app.use('/api/v1/transactions', require('../api/v1/transactions'));
 
+    /**
+     * @MinesApiRoutes
+     */
+    app.use('/api/v1/mines', require('../api/v1/mines'));
+
 };
